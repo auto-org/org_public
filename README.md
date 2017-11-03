@@ -1,2 +1,2 @@
-# org_public
-Orgination public repo
+# ind_public
+Individual Public Repo
