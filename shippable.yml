@@ -4,7 +4,10 @@ language: python
 # Version number
 python:
   - 2.7
-
+  
+runtime:
+  nodePool: custom__x86_64__Ubuntu_16_04
+  
 build:
   pre_ci_boot:
     image_name: drydock/u14pytall
