@@ -10,7 +10,7 @@ runtime:
   
 build:
   pre_ci_boot:
-    image_name: drydock/u14pytall
+    image_name: drydock/u16pytall
     image_tag: master
     pull: true
     options: '--privileged=true --net=bridge'
