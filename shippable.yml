@@ -112,5 +112,5 @@ jobs:
             - echo MY_SANITIZED_STRING=$MY_SANITIZED_STRING
             - if [ "$MY_SANITIZED_STRING" == "foo" ]; then echo 'success'; else test; fi
             - shipctl retry "echo 'Hello'"
-            - shipctl replace properties.json deploy.json run.json
+            #- shipctl replace properties.json deploy.json run.json
 
