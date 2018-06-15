@@ -107,5 +107,6 @@ jobs:
           script: 
             - MY_UPPERCASE="$(shipctl to_uppercase "foo!@#")"
             - echo MY_UPPERCASE=$MY_UPPERCASE
-            - if [ MY_UPPERCASE===FOO!@# ] fi
+            - if [ "MY_UPPERCASE" == "FOO!@#" ]; then foobar; fi
+       #     - if [ MY_UPPERCASE===FOO!@# ] fi
             
