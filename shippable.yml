@@ -20,9 +20,9 @@ resources:
   #  type: cliConfig
   #  integration: ghOrgAccIntAwsKeys
     
-  - name: cli_dockerRegistry
-    type: cliConfig
-    integration: ghOrgAccIntDockerRegistry
+ # - name: cli_dockerRegistry
+ #   type: cliConfig
+ #   integration: ghOrgAccIntDockerRegistry
     
  # - name: cli_gcl
  #   type: cliConfig
@@ -49,7 +49,7 @@ jobs:
       #- IN: cli_awsKeys
       #  scope:
      #     - ecr
-      - IN: cli_dockerRegistry
+    #  - IN: cli_dockerRegistry
     #  - IN: cli_gcl
      # - IN: cli_gcl
      #   scope:
