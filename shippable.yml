@@ -16,29 +16,29 @@ build:
  
 resources:
 #cliconfig resources to verify account integration 
-  - name: cli_awsKeys
-    type: cliConfig
-    integration: ghOrgAccIntAwsKeys
+  #- name: cli_awsKeys
+  #  type: cliConfig
+  #  integration: ghOrgAccIntAwsKeys
     
-  - name: cli_dockerRegistry
-    type: cliConfig
-    integration: ghOrgAccIntDockerRegistry
+ # - name: cli_dockerRegistry
+ #   type: cliConfig
+ #   integration: ghOrgAccIntDockerRegistry
     
-  - name: cli_gcl
-    type: cliConfig
-    integration: ghOrgAccIntGoogleCloud
+ # - name: cli_gcl
+ #   type: cliConfig
+ #   integration: ghOrgAccIntGoogleCloud
     
-  - name: cli_jfrog
-    type: cliConfig
-    integration: ghOrgAccIntJfrogArtifactory
+ # - name: cli_jfrog
+ #   type: cliConfig
+ #   integration: ghOrgAccIntJfrogArtifactory
   
-  - name: cli_kubernetes
-    type: cliConfig
-    integration: ghOrgAccIntKubernetes
+ # - name: cli_kubernetes
+ #   type: cliConfig
+ #   integration: ghOrgAccIntKubernetes
     
-  - name: cli_quay
-    type: cliConfig
-    integration: ghOrgAccIntQuay
+ # - name: cli_quay
+ #   type: cliConfig
+ #   integration: ghOrgAccIntQuay
 
 jobs:
 # job that checks all the account integrations 
