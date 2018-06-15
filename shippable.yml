@@ -98,3 +98,14 @@ jobs:
        # - script: echo CLI_QUAY_INTEGRATION_PASSWORD=${#CLI_QUAY_INTEGRATION_PASSWORD}
        # - script: echo CLI_QUAY_INTEGRATION_EMAIL=$CLI_QUAY_INTEGRATION_EMAIL
        # - script: docker pull quay.io/revathird/samplenode_test
+
+  - name: test_shipctl_run
+    type: runSh
+    steps:
+      - IN: cli_dockerRegistry
+      - TASK:        
+          script: 
+            - MY_UPPERCASE="$(shipctl to_uppercase "foo!@#")"
+            - echo MY_UPPERCASE=$MY_UPPERCASE
+            - if [ MY_UPPERCASE===FOO!@# ]; then echo "success"; fi
+            
