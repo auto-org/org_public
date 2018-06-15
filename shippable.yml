@@ -102,7 +102,7 @@ jobs:
   - name: test_shipctl_run
     type: runSh
     steps:
-      - IN: cli_dockerRegistry
+      #- IN: cli_dockerRegistry
       - TASK:        
           script: 
             - MY_UPPERCASE="$(shipctl to_uppercase "foo!@#")"
