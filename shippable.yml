@@ -105,7 +105,7 @@ jobs:
       #- IN: cli_dockerRegistry
       - TASK:        
           script: 
-            - MY_UPPERCASE="$(shipctl to_uppercase "foo!@#")"
+            - MY_UPPERCASE="$(shipctl to_uppercase "fo4rfe53o!@#")"
             - echo MY_UPPERCASE=$MY_UPPERCASE
             - if [ "MY_UPPERCASE" == "FOO!@#" ]; then foobar; fi
        #     - if [ MY_UPPERCASE===FOO!@# ] fi
