@@ -45,21 +45,21 @@ jobs:
   - name: test_accIntegration_run
     type: runSh
     steps:
-      - IN: cli_awsKeys
-      - IN: cli_awsKeys
-        scope:
-          - ecr
+     # - IN: cli_awsKeys
+     # - IN: cli_awsKeys
+     #   scope:
+     #     - ecr
       - IN: cli_dockerRegistry
-      - IN: cli_gcl
-      - IN: cli_gcl
-        scope:
-          - gcr
-      - IN: cli_gcl
-        scope:
-          - gke
-      - IN: cli_jfrog
-      - IN: cli_kubernetes
-      - IN: cli_quay
+     # - IN: cli_gcl
+     # - IN: cli_gcl
+     #   scope:
+     #     - gcr
+     # - IN: cli_gcl
+     #   scope:
+     #     - gke
+     # - IN: cli_jfrog
+     # - IN: cli_kubernetes
+     # - IN: cli_quay
       - TASK:        
        # - script: echo CLI_AWSKEYS_INTEGRATION_ACCESSKEY=$CLI_AWSKEYS_INTEGRATION_ACCESSKEY
        # - script: echo CLI_AWSKEYS_INTEGRATION_SECRETKEY=${#CLI_AWSKEYS_INTEGRATION_SECRETKEY}
