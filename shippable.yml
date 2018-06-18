@@ -1,3 +1,4 @@
+
 # Language setting
 language: python
 
@@ -45,12 +46,12 @@ jobs:
   - name: test_accIntegration_run
     type: runSh
     steps:
-     # - IN: cli_awsKeys
-     # - IN: cli_awsKeys
-     #   scope:
+    #  - IN: cli_awsKeys
+      #- IN: cli_awsKeys
+      #  scope:
      #     - ecr
       - IN: cli_dockerRegistry
-     # - IN: cli_gcl
+    #  - IN: cli_gcl
      # - IN: cli_gcl
      #   scope:
      #     - gcr
@@ -61,7 +62,7 @@ jobs:
      # - IN: cli_kubernetes
      # - IN: cli_quay
       - TASK:        
-       # - script: echo CLI_AWSKEYS_INTEGRATION_ACCESSKEY=$CLI_AWSKEYS_INTEGRATION_ACCESSKEY
+      #  - script: echo CLI_AWSKEYS_INTEGRATION_ACCESSKEY=$CLI_AWSKEYS_INTEGRATION_ACCESSKEY
        # - script: echo CLI_AWSKEYS_INTEGRATION_SECRETKEY=${#CLI_AWSKEYS_INTEGRATION_SECRETKEY}
        # - script: echo CLI_AWSKEYS_NAME=$CLI_AWSKEYS_NAME
        # - script: echo CLI_AWSKEYS_ID=$CLI_AWSKEYS_ID
@@ -76,7 +77,7 @@ jobs:
        # - script: echo CLI_AWSKEYS_VERSIONID=$CLI_AWSKEYS_VERSIONID
      #   - script: docker pull 742038439709.dkr.ecr.us-west-2.amazonaws.com/sample_node
        
-       # - script: docker pull shippabledocker/sample_node_pvt:ecr
+        - script: docker pull shippabledocker/sample_node_pvt:ecr
         - script: echo CLI_DOCKER_INTEGRATION_URL=$CLI_DOCKER_INTEGRATION_URL
         - script: echo CLI_DOCKER_INTEGRATION_USERNAME=$CLI_DOCKER_INTEGRATION_USERNAME
         - script: echo CLI_DOCKER_INTEGRATION_PASSWORD=${#CLI_DOCKER_INTEGRATION_PASSWORD}
