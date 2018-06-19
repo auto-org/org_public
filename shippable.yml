@@ -120,7 +120,7 @@ jobs:
             - echo MY_SANITIZED_STRING=$MY_SANITIZED_STRING
             - if [ "$MY_SANITIZED_STRING" == "foo" ]; then echo 'success'; else test; fi
             - shipctl retry "echo 'Hello'"
-            #- shipctl replace properties.json deploy.json run.json
-            - shipctl replace "IN/orgPublicRepo/gitRepo/properties.json" "IN/orgPublicRepo/gitRepo/run.json"
-            - cat "IN/orgPublicRepo/gitRepo/run.json"
+            #- shipctl replace "IN/orgPublicRepo/gitRepo/properties.json" "IN/orgPublicRepo/gitRepo/run.json"
+            #- cat "IN/orgPublicRepo/gitRepo/run.json"
+            - shipctl refresh_file_to_state "properties.json"
 
