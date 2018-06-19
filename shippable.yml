@@ -110,6 +110,7 @@ jobs:
   - name: test_shipctl_run
     type: runSh
     steps:
+      - IN: orgPublicRepo
       #- IN: cli_dockerRegistry
       - TASK:        
           script: 
@@ -120,7 +121,7 @@ jobs:
             - echo MY_SANITIZED_STRING=$MY_SANITIZED_STRING
             - if [ "$MY_SANITIZED_STRING" == "foo" ]; then echo 'success'; else test; fi
             - shipctl retry "echo 'Hello'"
-            #- shipctl replace "IN/orgPublicRepo/gitRepo/properties.json" "IN/orgPublicRepo/gitRepo/run.json"
-            #- cat "IN/orgPublicRepo/gitRepo/run.json"
-            - shipctl refresh_file_to_state "properties.json"
+            - shipctl replace "IN/orgPublicRepo/gitRepo/properties.json" "IN/orgPublicRepo/gitRepo/run.json"
+            - cat "IN/orgPublicRepo/gitRepo/run.json"
+            - shipctl get_json_value "IN/orgPublicRepo/gitRepo/properties.json" "properties[0].env1"
 
