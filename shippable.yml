@@ -43,7 +43,7 @@ resources:
     
   - name: orgPublicRepo
     type: gitRepo
-    integration: github
+    integration: gh
     pointer:
       sourceName: "auto-org/org_public"
       branch: master
