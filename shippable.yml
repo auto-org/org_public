@@ -134,11 +134,16 @@ jobs:
             - cat "IN/orgPublicRepo/gitRepo/run.json"
             - shipctl get_json_value "IN/orgPublicRepo/gitRepo/properties.json" "properties[0].env1"
            
+           
+           
             - MY_NEW_VERSION="$(shipctl bump_version v1.0.0 minor)"
             - echo MY_NEW_VERSION=$MY_NEW_VERSION
             - if [ "$MY_NEW_VERSION" == "v1.1.0" ]; then echo 'success'; else test; fi
-            - shipctl get_params_resource "params_shipctl" "test1"
             
+            - MY_GET_PARAMS_RESOURCE="$(shipctl get_params_resource "params_shipctl" "test1")"
+            - echo MY_GET_PARAMS_RESOURCE=$MY_GET_PARAMS_RESOURCE
+            - if [ "$MY_GET_PARAMS_RESOURCE" == "param1" ]; then echo 'success'; else test; fi
+
             - MY_GET_INTEGRATION_RESOURCE_FIELD="$(shipctl get_integration_resource_field "cli_dockerRegistry" "username")"
             - if [ "$MY_GET_INTEGRATION_RESOURCE_FIELD" == "shippabledocker" ]; then echo 'success'; else test; fi
             
