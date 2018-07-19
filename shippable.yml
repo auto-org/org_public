@@ -47,9 +47,9 @@ resources:
       sourceName: "auto-org/org_public"
       branch: master
   
-  - name: int_slack
-    type: integration
-    integration: "ghOrgAccIntSlack"
+ # - name: int_slack
+ #   type: integration
+ #   integration: "ghOrgAccIntSlack"
     
   - name: params_shipctl
     type: params
