@@ -47,9 +47,9 @@ resources:
       sourceName: "auto-org/org_public"
       branch: master
   
-  - name: int_slack
+  - name: int_github
     type: integration
-    integration: "ghOrgAccIntSlack"
+    integration: "gh"
     
   - name: params_shipctl
     type: params
@@ -149,11 +149,11 @@ jobs:
             - MY_GET_INTEGRATION_RESOURCE_FIELD="$(shipctl get_integration_resource_field "cli_dockerRegistry" "username")"
             - if [ "$MY_GET_INTEGRATION_RESOURCE_FIELD" == "shippabledocker" ]; then echo 'success'; else test; fi
             
-            - MY_GET_INTEGRATION_RESOURCE_KEYS="$(shipctl get_integration_resource_keys "int_slack")"
+            - MY_GET_INTEGRATION_RESOURCE_KEYS="$(shipctl get_integration_resource_keys "int_github")"
             - echo MY_GET_INTEGRATION_RESOURCE_KEYS=$MY_GET_INTEGRATION_RESOURCE_KEYS            
             - if [ "$MY_GET_INTEGRATION_RESOURCE_KEYS" == "webhookUrl" ]; then echo 'success'; else test; fi
             
-            - MY_GET_INTEGRATION_RESOURCE="$(shipctl get_integration_resource "int_slack" "masterName")"
+            - MY_GET_INTEGRATION_RESOURCE="$(shipctl get_integration_resource "int_github" "masterName")"
             - echo MY_GET_INTEGRATION_RESOURCE=$MY_GET_INTEGRATION_RESOURCE
             - if [ "$MY_GET_INTEGRATION_RESOURCE" == "slackKey" ]; then echo 'success'; else test; fi 
             
