@@ -47,9 +47,17 @@ resources:
       sourceName: "auto-org/org_public"
       branch: master
   
-  - name: int_github
+  - name: image_shipctl
+    type: image
+    integration: ghOrgAccIntDockerRegistry
+    pointer:
+      sourceName: "shippabledocker/pipelinev2"
+    seed:
+      versionName: "deploy.1"
+      
+  - name: int_slack
     type: integration
-    integration: "gh"
+    integration: ghOrgAccIntSlack
     
   - name: params_shipctl
     type: params
@@ -135,8 +143,7 @@ jobs:
             - shipctl replace "IN/orgPublicRepo/gitRepo/properties.json" "IN/orgPublicRepo/gitRepo/run.json"
             - cat "IN/orgPublicRepo/gitRepo/run.json"
             - shipctl get_json_value "IN/orgPublicRepo/gitRepo/properties.json" "properties[0].env1"
-           
-           
+                   
            
             - MY_NEW_VERSION="$(shipctl bump_version v1.0.0 minor)"
             - echo MY_NEW_VERSION=$MY_NEW_VERSION
@@ -157,6 +164,6 @@ jobs:
             - echo MY_GET_INTEGRATION_RESOURCE=$MY_GET_INTEGRATION_RESOURCE
             - if [ "$MY_GET_INTEGRATION_RESOURCE" == "github" ]; then echo 'success'; else test; fi 
             
-            - MY_GET_RESOURCE_VERSION_KEY="$(shipctl get_resource_version_key "sample_img")"
+            - MY_GET_RESOURCE_VERSION_KEY="$(shipctl get_resource_version_key "image_shipctl")"
             - echo MY_GET_RESOURCE_VERSION_KEY=$MY_GET_RESOURCE_VERSION_KEY
-            - if [ "$MY_GET_RESOURCE_VERSION_KEY" == "slackKey" ]; then echo 'success'; else test; fi 43e4
+            - if [ "$MY_GET_RESOURCE_VERSION_KEY" == "slackKey" ]; then echo 'success'; else test; fi
