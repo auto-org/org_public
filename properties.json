@@ -1,6 +1,6 @@
 {
 
-  env1: "frompropertiesone",
-  env2: "frompropertiestwo"
+  "env1": "frompropertiesone",
+  "env2": "frompropertiestwo"
 
 }
