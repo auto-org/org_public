@@ -120,7 +120,7 @@ jobs:
     type: runSh
     steps:
       - IN: orgPublicRepo
-      - IN: int_slack
+      - IN: int_github
       - IN: cli_dockerRegistry
       - IN: params_shipctl
       - TASK:        
