@@ -168,6 +168,6 @@ jobs:
             - echo MY_GET_INTEGRATION_RESOURCE=$MY_GET_INTEGRATION_RESOURCE
             - if [ "$MY_GET_INTEGRATION_RESOURCE" == "slackKey" ]; then echo 'success'; else test; fi 
             
-            - MY_GET_RESOURCE_VERSION_KEY="$(shipctl get_resource_version_key "params_shipctl" "test1")"
+            - MY_GET_RESOURCE_VERSION_KEY="$(shipctl get_resource_version_key "test_shipctl_run" "test1")"
             - echo MY_GET_RESOURCE_VERSION_KEY=$MY_GET_RESOURCE_VERSION_KEY
             - if [ "$MY_GET_RESOURCE_VERSION_KEY" == "param1" ]; then echo 'success'; else test; fi
