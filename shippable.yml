@@ -7,7 +7,7 @@ python:
 
 build:
   pre_ci_boot:
-    image_name: drydock/u14pytall
+    image_name: drydock/u16pytall
     image_tag: master
     pull: true
     options: '--privileged=true --net=bridge'
@@ -47,9 +47,9 @@ resources:
       sourceName: "auto-org/org_public"
       branch: master
   
- # - name: int_slack
- #   type: integration
- #   integration: "ghOrgAccIntSlack"
+  - name: int_slack
+    type: integration
+    integration: "ghOrgAccIntSlack"
     
   - name: params_shipctl
     type: params
@@ -120,7 +120,9 @@ jobs:
     type: runSh
     steps:
       - IN: orgPublicRepo
-      #- IN: cli_dockerRegistry
+      - IN: int_slack
+      - IN: cli_dockerRegistry
+      - IN: params_shipctl
       - TASK:        
           script: 
             - MY_UPPERCASE="$(shipctl to_uppercase "foo!@#")"
