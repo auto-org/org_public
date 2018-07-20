@@ -160,7 +160,7 @@ jobs:
             - echo MY_GET_INTEGRATION_RESOURCE_KEYS=$MY_GET_INTEGRATION_RESOURCE_KEYS            
             - if [ "$MY_GET_INTEGRATION_RESOURCE_KEYS" == "webhookUrl" ]; then echo 'success'; else test; fi
             
-            - MY_GET_INTEGRATION_RESOURCE="$(shipctl get_integration_resource "int_github" "masterName")"
+            - MY_GET_INTEGRATION_RESOURCE="$(shipctl get_integration_resource "int_slack" "masterName")"
             - echo MY_GET_INTEGRATION_RESOURCE=$MY_GET_INTEGRATION_RESOURCE
             - if [ "$MY_GET_INTEGRATION_RESOURCE" == "github" ]; then echo 'success'; else test; fi 
             
