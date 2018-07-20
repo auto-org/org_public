@@ -40,37 +40,37 @@ resources:
     type: cliConfig
     integration: ghOrgAccIntQuay
     
-  - name: orgPublicRepo
-    type: gitRepo
-    integration: gh
-    pointer:
-      sourceName: "auto-org/org_public"
-      branch: master
+  #- name: orgPublicRepo
+  #  type: gitRepo
+  #  integration: gh
+  #  pointer:
+  #    sourceName: "auto-org/org_public"
+  #    branch: master
   
-  - name: image_shipctl
-    type: image
-    integration: ghOrgAccIntDockerRegistry
-    pointer:
-      sourceName: "shippabledocker/pipelinev2"
-    seed:
-      versionName: "deploy.1"
+  #- name: image_shipctl
+  #  type: image
+  #  integration: ghOrgAccIntDockerRegistry
+  #  pointer:
+  #    sourceName: "shippabledocker/pipelinev2"
+  #  seed:
+  #    versionName: "deploy.1"
       
-  - name: int_slack
-    type: integration
-    integration: ghOrgAccIntSlack
+ # - name: int_slack
+ #   type: integration
+ #   integration: ghOrgAccIntSlack
   
-  - name: int_keyValuePair
-    type: integration
-    integration: ghOrgAccIntKeyValuePair
+ # - name: int_keyValuePair
+ #   type: integration
+ #   integration: ghOrgAccIntKeyValuePair
     
-  - name: params_shipctl
-    type: params
-    version:
-      params:
-        test1: param1
+ # - name: params_shipctl
+ #   type: params
+ #   version:
+  #    params:
+  #      test1: param1
         
-  - name: state_shipctl
-    type: state
+ # - name: state_shipctl
+ #   type: state
 
 jobs:
 # job that checks all the account integrations 
@@ -131,57 +131,57 @@ jobs:
        # - script: echo CLI_QUAY_INTEGRATION_EMAIL=$CLI_QUAY_INTEGRATION_EMAIL
        # - script: docker pull quay.io/revathird/samplenode_test
 
-  - name: test_shipctl_run
-    type: runSh
-    steps:
-      - IN: orgPublicRepo
-      - IN: int_slack
-      - IN: cli_dockerRegistry
-      - IN: params_shipctl
-      - OUT: state_shipctl
-      - TASK:        
-          script: 
-            - MY_UPPERCASE="$(shipctl to_uppercase "foo!@#")"
-            - echo MY_UPPERCASE=$MY_UPPERCASE
-            - if [ "$MY_UPPERCASE" == "FOO!@#" ]; then echo 'success'; else test; fi
-            - MY_SANITIZED_STRING="$(shipctl sanitize_shippable_string "foo!@#")"
-            - echo MY_SANITIZED_STRING=$MY_SANITIZED_STRING
-            - if [ "$MY_SANITIZED_STRING" == "foo" ]; then echo 'success'; else test; fi
-            - shipctl retry "echo 'Hello'"
-            - shipctl replace "IN/orgPublicRepo/gitRepo/properties.json" "IN/orgPublicRepo/gitRepo/run.json"
-            - cat "IN/orgPublicRepo/gitRepo/run.json"
-            - shipctl get_json_value "IN/orgPublicRepo/gitRepo/properties.json" "properties[0].env1"
+ # - name: test_shipctl_run
+ #   type: runSh
+ #   steps:
+ #     - IN: orgPublicRepo
+ #     - IN: int_slack
+ #     - IN: cli_dockerRegistry
+ #     - IN: params_shipctl
+ #     - OUT: state_shipctl
+ #     - TASK:        
+ #         script: 
+ #           - MY_UPPERCASE="$(shipctl to_uppercase "foo!@#")"
+ #           - echo MY_UPPERCASE=$MY_UPPERCASE
+ #           - if [ "$MY_UPPERCASE" == "FOO!@#" ]; then echo 'success'; else test; fi
+ #           - MY_SANITIZED_STRING="$(shipctl sanitize_shippable_string "foo!@#")"
+ #           - echo MY_SANITIZED_STRING=$MY_SANITIZED_STRING
+ #           - if [ "$MY_SANITIZED_STRING" == "foo" ]; then echo 'success'; else test; fi
+ #           - shipctl retry "echo 'Hello'"
+ #           - shipctl replace "IN/orgPublicRepo/gitRepo/properties.json" "IN/orgPublicRepo/gitRepo/run.json"
+ #           - cat "IN/orgPublicRepo/gitRepo/run.json"
+ #           - shipctl get_json_value "IN/orgPublicRepo/gitRepo/properties.json" "properties[0].env1"
                    
            
-            - MY_NEW_VERSION="$(shipctl bump_version v1.0.0 minor)"
-            - echo MY_NEW_VERSION=$MY_NEW_VERSION
-            - if [ "$MY_NEW_VERSION" == "v1.1.0" ]; then echo 'success'; else test; fi
+ #           - MY_NEW_VERSION="$(shipctl bump_version v1.0.0 minor)"
+ #           - echo MY_NEW_VERSION=$MY_NEW_VERSION
+ #           - if [ "$MY_NEW_VERSION" == "v1.1.0" ]; then echo 'success'; else test; fi
             
-            - MY_GET_PARAMS_RESOURCE="$(shipctl get_params_resource "params_shipctl" "test1")"
-            - echo MY_GET_PARAMS_RESOURCE=$MY_GET_PARAMS_RESOURCE
-            - if [ "$MY_GET_PARAMS_RESOURCE" == "param1" ]; then echo 'success'; else test; fi
+ #           - MY_GET_PARAMS_RESOURCE="$(shipctl get_params_resource "params_shipctl" "test1")"
+  #          - echo MY_GET_PARAMS_RESOURCE=$MY_GET_PARAMS_RESOURCE
+ #           - if [ "$MY_GET_PARAMS_RESOURCE" == "param1" ]; then echo 'success'; else test; fi
 
-            - MY_GET_INTEGRATION_RESOURCE_FIELD="$(shipctl get_integration_resource_field "cli_dockerRegistry" "username")"
-            - if [ "$MY_GET_INTEGRATION_RESOURCE_FIELD" == "shippabledocker" ]; then echo 'success'; else test; fi
+   #         - MY_GET_INTEGRATION_RESOURCE_FIELD="$(shipctl get_integration_resource_field "cli_dockerRegistry" "username")"
+   #         - if [ "$MY_GET_INTEGRATION_RESOURCE_FIELD" == "shippabledocker" ]; then echo 'success'; else test; fi
             
-            - MY_GET_INTEGRATION_RESOURCE_KEYS="$(shipctl get_integration_resource_keys "int_slack")"
-            - echo MY_GET_INTEGRATION_RESOURCE_KEYS=$MY_GET_INTEGRATION_RESOURCE_KEYS            
-            - if [ "$MY_GET_INTEGRATION_RESOURCE_KEYS" == "webhookUrl" ]; then echo 'success'; else test; fi
+    #        - MY_GET_INTEGRATION_RESOURCE_KEYS="$(shipctl get_integration_resource_keys "int_slack")"
+    #        - echo MY_GET_INTEGRATION_RESOURCE_KEYS=$MY_GET_INTEGRATION_RESOURCE_KEYS            
+    #        - if [ "$MY_GET_INTEGRATION_RESOURCE_KEYS" == "webhookUrl" ]; then echo 'success'; else test; fi
             
-            - MY_GET_INTEGRATION_RESOURCE="$(shipctl get_integration_resource "int_slack" "masterName")"
-            - echo MY_GET_INTEGRATION_RESOURCE=$MY_GET_INTEGRATION_RESOURCE
-            - if [ "$MY_GET_INTEGRATION_RESOURCE" == "slackKey" ]; then echo 'success'; else test; fi 
+    #        - MY_GET_INTEGRATION_RESOURCE="$(shipctl get_integration_resource "int_slack" "masterName")"
+     #       - echo MY_GET_INTEGRATION_RESOURCE=$MY_GET_INTEGRATION_RESOURCE
+     #       - if [ "$MY_GET_INTEGRATION_RESOURCE" == "slackKey" ]; then echo 'success'; else test; fi 
             
             
 
-  - name: test_stateShipctl_run
-    type: runSh
-    steps:
-      - IN: state_shipctl
-      - TASK:        
-          script: 
-            - echo "runsh for state resource to test shipctl commands"
-            - MY_GET_RESOURCE_VERSION_KEY="$(shipctl get_resource_version_key "test_stateShipctl_run" "key1")"
-            - echo MY_GET_RESOURCE_VERSION_KEY=$MY_GET_RESOURCE_VERSION_KEY
-            - if [ "$MY_GET_RESOURCE_VERSION_KEY" == "value1" ]; then echo 'success'; else test; fi
+  #- name: test_stateShipctl_run
+   # type: runSh
+  #  steps:
+  #    - IN: state_shipctl
+  #    - TASK:        
+   #       script: 
+   #         - echo "runsh for state resource to test shipctl commands"
+    #        - MY_GET_RESOURCE_VERSION_KEY="$(shipctl get_resource_version_key "test_stateShipctl_run" "key1")"
+    #        - echo MY_GET_RESOURCE_VERSION_KEY=$MY_GET_RESOURCE_VERSION_KEY
+     #       - if [ "$MY_GET_RESOURCE_VERSION_KEY" == "value1" ]; then echo 'success'; else test; fi
             
