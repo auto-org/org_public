@@ -172,9 +172,7 @@ jobs:
             - echo MY_GET_INTEGRATION_RESOURCE=$MY_GET_INTEGRATION_RESOURCE
             - if [ "$MY_GET_INTEGRATION_RESOURCE" == "slackKey" ]; then echo 'success'; else test; fi 
             
-            - MY_GET_RESOURCE_VERSION_KEY="$(shipctl get_resource_version_key "test_shipctl_run" "key1")"
-            - echo MY_GET_RESOURCE_VERSION_KEY=$MY_GET_RESOURCE_VERSION_KEY
-            - if [ "$MY_GET_RESOURCE_VERSION_KEY" == "value1" ]; then echo 'success'; else test; fi
+            
 
   - name: test_stateShipctl_run
     type: runSh
@@ -183,4 +181,7 @@ jobs:
       - TASK:        
           script: 
             - echo "runsh for state resource to test shipctl commands"
+            - MY_GET_RESOURCE_VERSION_KEY="$(shipctl get_resource_version_key "test_stateShipctl_run" "key1")"
+            - echo MY_GET_RESOURCE_VERSION_KEY=$MY_GET_RESOURCE_VERSION_KEY
+            - if [ "$MY_GET_RESOURCE_VERSION_KEY" == "value1" ]; then echo 'success'; else test; fi
             
