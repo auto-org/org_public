@@ -158,7 +158,7 @@ jobs:
             
             - MY_GET_INTEGRATION_RESOURCE_KEYS="$(shipctl get_integration_resource_keys "int_slack")"
             - echo MY_GET_INTEGRATION_RESOURCE_KEYS=$MY_GET_INTEGRATION_RESOURCE_KEYS            
-            - if [ "$MY_GET_INTEGRATION_RESOURCE_KEYS" == "webhookurl" ]; then echo 'success'; else test; fi
+            - if [ "$MY_GET_INTEGRATION_RESOURCE_KEYS" == "webhookUrl" ]; then echo 'success'; else test; fi
             
             - MY_GET_INTEGRATION_RESOURCE="$(shipctl get_integration_resource "int_github" "masterName")"
             - echo MY_GET_INTEGRATION_RESOURCE=$MY_GET_INTEGRATION_RESOURCE
